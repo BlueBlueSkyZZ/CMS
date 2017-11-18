@@ -7,53 +7,36 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.css">
 	<script type="text/javascript" src="vendors/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="vendors/pdf/pdfobject.min.js"></script>
+  <style>
+  .pdfobject-container { height: 500px;}
+  .pdfobject { border: 1px solid #666; }
+</style>
 </head>
 <body>
+  <frame src="files/test.pdf">你好</frame>
+  <a href="files/test.mp4" target="_blank">你好2</a>
+  <button class="btn btn-primary" onclick="preViewPDF()">PDFObject预览本地PDF</button>
+  <div id="pdfDiv"></div>
 
-	<div class="table-responsive" style="overflow:scroll;">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-            <th>Table heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
+  <script type="text/javascript">
+    //预览PDF文件
+    function preViewPDF(){
+      if(PDFObject.supportsPDFs){
+       alert("您的浏览器支持PDF预览功能");
+     } else {
+      var browserType = getOs();
+      if(browserType=="Firefox"){
+        alert("火狐浏览器支持PDF预览功能");
+      }else{
+        alert("您的浏览器不支持PDF预览功能");
+      }
+    }
+    PDFObject.embed("files/test.pdf");
+    //PDFObject.embed("files/1468383501520.jpg", "#pdfDiv");
+    // var myPDF = new PDFObject({ url: "files/test.pdf" }).embed();
+  }
+</script>
 </body>
 </html>
